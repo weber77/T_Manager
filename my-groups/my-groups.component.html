@@ -1,0 +1,39 @@
+<header>
+  <div class="logo">T.<span>Manager</span></div>
+</header>
+<div class="nav-btn">Menu</div>
+<div class="container">
+
+  <div class="sidebar">
+    <nav>
+      <a href="#">T.<span>Manager</span></a>
+      <ul>
+        <li [routerLink]="['/dashboard']" [routerLinkActive]="['active']"><a>Dashboard</a></li>
+        <li [routerLink]="['/users']" [routerLinkActive]="['active']"><a>Users</a></li>
+        <li [routerLink]="['/admins']" [routerLinkActive]="['active']"><a>Admins</a></li>
+        <li [routerLink]="['/allgroups']" [routerLinkActive]="['active']"><a>All Groups</a></li>
+        <li [routerLink]="['/mygroups']" [routerLinkActive]="['active']"><a>My Groups</a></li>
+        <li [routerLink]="['/invitations']" [routerLinkActive]="['active']"><a>Invitations</a></li>
+        <li [routerLink]="['/requests']" [routerLinkActive]="['active']"><a >Requests</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <div class="main-content">
+    <h1>Groups</h1>
+    <p>Here you can see all groups you belong to!</p>
+    <div class="row">
+      <div class="col-md-4 my-2" *ngFor="let group of groups">
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">{{group.name}}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+            <p class="card-text">{{group.description}}</p>
+            <p class="card-text"><b>Admin: </b>{{group.admin.firstName}} {{group.admin.lastName}}</p>
+            <button type="button" class="btn-block" style="background-color: #8e44ad;" [routerLink]="['/groups', group.id]">Explore</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

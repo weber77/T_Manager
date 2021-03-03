@@ -1,0 +1,46 @@
+<header>
+  <div class="logo">T.<span>Manager</span></div>
+</header>
+<div class="nav-btn">Menu</div>
+<div class="container">
+
+  <div class="sidebar">
+    <nav>
+      <a [routerLink]="['/']" >T.<span>Manager</span></a>
+      <ul>
+        <li [routerLink]="['/dashboard']" [routerLinkActive]="['active']"><a>Dashboard</a></li>
+        <li [routerLink]="['/users']" [routerLinkActive]="['active']"><a>Users</a></li>
+        <li [routerLink]="['/admins']" [routerLinkActive]="['active']"><a>Admins</a></li>
+        <li [routerLink]="['/allgroups']" [routerLinkActive]="['active']"><a>Groups</a></li>
+        <li [routerLink]="['/mygroups']" [routerLinkActive]="['active']"><a>My Groups</a></li>
+        <li [routerLink]="['/invitations']" [routerLinkActive]="['active']"><a>Invitations</a></li>
+        <li [routerLink]="['/requests']" [routerLinkActive]="['active']"><a >Requests</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <div class="main-content">
+    <div class="my-4">
+      <h1>Admins</h1>
+      <p>Here you can find all admins with accounts!</p>
+    </div>
+    <table class="table">
+      <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">First Name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">Email</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let admin of admins; let i = index;">
+        <th scope="row">{{i+1}}</th>
+        <td class="text-capitalize">{{admin.firstName}}</td>
+        <td class="text-capitalize">{{admin.lastName}}</td>
+        <td>{{admin.email}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

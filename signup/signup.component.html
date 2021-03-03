@@ -1,0 +1,65 @@
+<app-header></app-header>
+<div class="signup-form">
+  <form method="post">
+    <div class="avatar">
+      <img src="./assets/admin.png" alt="Avatar">
+    </div>
+    <h2 class="text-center">Member Signup</h2>
+    <div class="form-group">
+      <input
+        type="text"
+        [(ngModel)]="baseUser.firstName" name="firstName"
+        class="form-control"
+        placeholder="First Name"
+      />
+    </div>
+    <div class="form-group">
+      <input
+        type="text"
+        [(ngModel)]="baseUser.lastName" name="lastName"
+        class="form-control"
+        placeholder="Last Name"
+      />
+    </div>
+    <div class="form-group">
+      <input
+        type="text"
+        [(ngModel)]="baseUser.userName" name="userName"
+        class="form-control"
+        placeholder="UserName"
+      />
+    </div>
+    <div class="form-group">
+      <input
+        type="email"
+        [(ngModel)]="baseUser.email" name="email"
+        class="form-control"
+        placeholder="Email"
+      />
+    </div>
+    <div class="form-group">
+      <select
+        class="form-control"
+        id="sel1" required [(ngModel)]="role" name="role"
+      >
+        <option [disabled]="true">Select Role</option>
+        <option [selected]="true" [value]="'user'">User</option>
+        <option [value]="'admin'">Admin</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <input
+        type="password"
+        [(ngModel)]="baseUser.password" name="password"
+        class="form-control"
+        id="password"
+        placeholder="Password"
+      />
+    </div>
+    <div class="form-group">
+      <button type="submit" (click)="onSignUp()" class="btn btn-primary btn-lg btn-block">Sign Up</button>
+    </div>
+    <p class="text-center small">Already have an account? <a [routerLink]="['/']">Log in here!</a></p>
+  </form>
+</div>
+<app-footer></app-footer>

@@ -1,0 +1,76 @@
+<header>
+  <div class="logo">T.<span>Manager</span></div>
+</header>
+<div class="nav-btn">Menu</div>
+<div class="container">
+
+  <div class="sidebar">
+    <nav>
+      <a [routerLink]="['/']" >T.<span>Manager</span></a>
+      <ul>
+        <li [routerLink]="['/dashboard']" [routerLinkActive]="['active']"><a>Dashboard</a></li>
+        <li><a>Users</a></li>
+        <li><a>Admins</a></li>
+        <li [routerLink]="['/allgroups']" class="active"><a>All Groups</a></li>
+        <li [routerLink]="['/mygroups']" [routerLinkActive]="['active']"><a>My Groups</a></li>
+        <li [routerLink]="['/invitations']" [routerLinkActive]="['active']"><a>Invitations</a></li>
+        <li [routerLink]="['/requests']" [routerLinkActive]="['active']"><a >Requests</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <div class="main-content">
+    <h1>Create Task</h1>
+    <p>Here you can create a new task for the Group <span class="text-primary">"{{group.name}}"</span>!</p>
+    <form>
+      <div class="form-group">
+        <label>Task Name</label>
+        <input
+          class="form-control"
+          type="text"
+          name="title"
+          [(ngModel)]="task.title"
+          placeholder="Task Name"
+        />
+      </div>
+      <div class="form-group">
+        <label>Description</label>
+        <textarea
+          class="form-control"
+          rows="4"
+          placeholder="Description"
+          name="description"
+          [(ngModel)]="task.description"
+        ></textarea>
+      </div>
+
+      <div class="form-group">
+        <label>Assigned To...</label>
+        <select
+          class="form-control"
+          id="admin"
+          placeholder="Assigned To..."
+          required [(ngModel)]="task.user" name="admin"
+        >
+          <option [disabled]="true">Select Member...</option>
+          <option [selected]="true" [ngValue]="member" *ngFor="let member of groupMembers">{{member.firstName}} {{member.lastName}}</option>
+        </select>
+      </div>
+      <div class="form-group py-2">
+        <div class="row">
+          <button class="pull-right btn btn-danger px-2" [routerLink]="['/groups', id]">
+            Cancel
+          </button>
+          <button
+            (click)="addTask()"
+            class="pull-right btn btn-primary px-2"
+            type="submit"
+          >
+            Submit
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+</div>

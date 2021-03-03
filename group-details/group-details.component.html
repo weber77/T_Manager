@@ -1,0 +1,77 @@
+<header>
+  <div class="logo">T.<span>Manager</span></div>
+</header>
+<div class="nav-btn">Menu</div>
+<div class="container">
+
+  <div class="sidebar">
+    <nav>
+      <a [routerLink]="['/']" >T.<span>Manager</span></a>
+      <ul>
+        <li [routerLink]="['/dashboard']" [routerLinkActive]="['active']"><a>Dashboard</a></li>
+        <li [routerLink]="['/users']" [routerLinkActive]="['active']"><a>Users</a></li>
+        <li><a>Admins</a></li>
+        <li [routerLink]="['/allgroups']" class="active"><a>All Groups</a></li>
+        <li [routerLink]="['/mygroups']" [routerLinkActive]="['active']"><a>My Groups</a></li>
+        <li [routerLink]="['/invitations']" [routerLinkActive]="['active']"><a>Invitations</a></li>
+        <li [routerLink]="['/requests']" [routerLinkActive]="['active']"><a >Requests</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <div class="main-content">
+    <div class="my-2">
+      <h1>Group Details</h1>
+      <p>Here you can view the details of a group!</p>
+    </div>
+    <div class="jumbotron px-5 py-2">
+      <h3 class="display-5 text-capitalize">{{group.name}}</h3>
+      <p class="lead">{{group.description}}</p>
+      <hr class="my-4">
+      <p class="text-capitalize"><b>Admin: </b>{{group.admin.firstName}} {{group.admin.lastName}}</p>
+    </div>
+      <div class="my-5">
+        <h4>Users</h4>
+        <p>Here you can find all users belonging to this group!</p>
+      </div>
+      <table class="table">
+        <thead class="thead-dark">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">First Name</th>
+          <th scope="col">Last Name</th>
+          <th scope="col">Email</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let user of users; let i = index;">
+          <th scope="row">{{i+1}}</th>
+          <td>{{user.firstName}}</td>
+          <td>{{user.lastName}}</td>
+          <td>{{user.email}}</td>
+        </tr>
+        </tbody>
+      </table>
+    <div class="mt-5">
+      <h4>Tasks</h4>
+      <p>Here you can find all tasks for members of this group!</p>
+    </div>
+    <div class="d-flex justify-content-end align-items-end my-2">
+      <button [routerLink]="['/groups', group.id, 'createtask']" type="button" class="btn btn-success px-4 py-1">Add Task</button>
+    </div>
+        <div class="card-columns">
+          <div *ngFor="let task of tasks" class="card" style="width: 18rem;">
+            <div class="card-body text-capitalize">
+              <h5 class="card-title">{{task.title}}</h5><br><hr>
+              <div *ngIf="task.user">
+                <h6 class="card-subtitle mb-2 text-muted"><b>Assigned: </b>{{task.user.firstName}} {{task.user.lastName}}</h6>
+              </div>
+              <h6 class="card-subtitle mb-2 text-muted"><b>Assignment Status: </b>{{task.assignmentStatus}}</h6>
+              <h6 class="card-subtitle mb-2 text-muted"><b>Progress Status: </b>{{task.progressStatus}}</h6>
+              <button type="button" [routerLink]="['/groups', group.id, 'tasks', task.id]" class="btn-primary px-2">Update</button>
+                <button (click)="deleteTask(task.id)" class="btn-danger px-2">Delete</button>
+            </div>
+          </div>
+    </div>
+    </div>
+</div>

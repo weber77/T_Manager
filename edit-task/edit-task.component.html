@@ -1,0 +1,91 @@
+<header>
+  <div class="logo">T.<span>Manager</span></div>
+</header>
+<div class="nav-btn">Menu</div>
+<div class="container">
+
+  <div class="sidebar">
+    <nav>
+      <a [routerLink]="['/']" >T.<span>Manager</span></a>
+      <ul>
+        <li [routerLink]="['/dashboard']" [routerLinkActive]="['active']"><a>Dashboard</a></li>
+        <li><a>Users</a></li>
+        <li><a>Admins</a></li>
+        <li [routerLink]="['/allgroups']" class="active"><a>All Groups</a></li>
+        <li [routerLink]="['/mygroups']" [routerLinkActive]="['active']"><a>My Groups</a></li>
+        <li><a>Invitations</a></li>
+        <li><a >Requests</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <div class="main-content">
+    <h1>Update Task</h1>
+    <p>Here you can update Task <span class="text-primary">"{{task.title}}"</span> for the Group <span class="text-primary">"{{group.name}}"</span>!</p>
+    <form>
+      <div class="form-group">
+        <label>Task Name</label>
+        <input
+          class="form-control"
+          type="text"
+          name="title"
+          [(ngModel)]="task.title"
+          placeholder="Task Name"
+        />
+      </div>
+      <div class="form-group">
+        <label>Description</label>
+        <textarea
+          class="form-control"
+          rows="4"
+          placeholder="Description"
+          name="description"
+          [(ngModel)]="task.description"
+        ></textarea>
+      </div>
+
+      <div class="form-group">
+        <label *ngIf="task.user">Currently Assigned To <span class="text-primary text-capitalize">{{task.user.firstName}} {{task.user.lastName}}</span></label>
+        <label *ngIf="!task.user">Assign To...</label>
+        <select
+          class="form-control"
+          id="admin"
+          placeholder="Assigned To..."
+          required [(ngModel)]="task.user" name="admin"
+        >
+          <option [disabled]="true">Select to assign...</option>
+          <option [selected]="true" [ngValue]="member" *ngFor="let member of groupMembers">{{member.firstName}} {{member.lastName}}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Progress...</label>
+        <select
+          class="form-control"
+          id="progress"
+          placeholder="Progress"
+          required [(ngModel)]="task.progressStatus" name="admin"
+        >
+          <option [disabled]="true">Select Status...</option>
+          <option [selected]="true" [ngValue]="'none'">None</option>
+          <option [selected]="true" [ngValue]="'in progress'">In Progress</option>
+          <option [selected]="true" [ngValue]="'completed'">Completed</option>
+        </select>
+      </div>
+      <div class="form-group py-2">
+        <div class="row">
+          <button class="pull-right btn btn-danger px-2" [routerLink]="['/groups', groupId]">
+            Cancel
+          </button>
+          <button
+            (click)="updateTask(taskId, task)"
+            class="pull-right btn btn-primary px-2"
+            type="submit"
+          >
+            Submit
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+</div>

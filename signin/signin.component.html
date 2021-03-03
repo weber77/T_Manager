@@ -1,0 +1,33 @@
+<app-header></app-header>
+<div class="login-form">
+  <form method="post">
+    <div class="avatar">
+      <img src="./assets/admin.png" alt="Avatar">
+    </div>
+    <h2 class="text-center">Member Login</h2>
+    <div class="form-group">
+      <input
+        type="text"
+        [(ngModel)]="loginModel.userName" name="userName"
+        class="form-control"
+        placeholder="Username"
+      />    </div>
+    <div class="form-group">
+      <input
+        type="password"
+        [(ngModel)]="loginModel.password" name="password"
+        class="form-control"
+        placeholder="Password"
+      />    </div>
+    <div class="form-group">
+      <button type="button" (click)="onSignIn()" class="btn btn-primary btn-lg btn-block">Sign in</button>
+    </div>
+    <div class="clearfix">
+      <label class="pull-left checkbox-inline"><input type="checkbox"> Remember me</label>&nbsp;<br>
+
+      <a href="#" class="pull-right"> Forgot Password?</a>
+    </div>
+    <p class="text-center small">Don't have an account? <a [routerLink]="['/signup']">Sign up here!</a></p>
+  </form>
+</div>
+<app-footer></app-footer>

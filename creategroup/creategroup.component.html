@@ -1,0 +1,89 @@
+<header>
+  <div class="logo">T.<span>Manager</span></div>
+</header>
+<div class="nav-btn">Menu</div>
+<div class="container">
+
+  <div class="sidebar">
+    <nav>
+      <a [routerLink]="['/']" >T.<span>Manager</span></a>
+      <ul>
+        <li [routerLink]="['/dashboard']" [routerLinkActive]="['active']"><a>Dashboard</a></li>
+        <li><a>Users</a></li>
+        <li><a>Admins</a></li>
+        <li [routerLink]="['/allgroups']" class="active"><a>Groups</a></li>
+        <li [routerLink]="['/invitations']" [routerLinkActive]="['active']"><a>Invitations</a></li>
+        <li [routerLink]="['/requests']" [routerLinkActive]="['active']"><a >Requests</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <div class="main-content">
+    <h1>Create Group</h1>
+    <p>Here you can create a new group!</p>
+          <form>
+            <div class="form-group">
+              <label>Group Name</label>
+              <input
+                class="form-control"
+                type="text"
+                name="title"
+                [(ngModel)]="group.name"
+                placeholder="Group Name"
+              />
+            </div>
+            <div class="form-group">
+              <label>Description</label>
+              <textarea
+              class="form-control"
+              rows="4"
+              placeholder="Description"
+              name="description"
+              [(ngModel)]="group.description"
+            ></textarea>
+            </div>
+
+            <div class="form-group">
+              <label>Admin</label>
+              <select
+                class="form-control"
+                id="admin"
+                placeholder="Admin"
+                required [(ngModel)]="group.admin" name="admin"
+              >
+                <option [disabled]="true">Select Admin...</option>
+                <option [selected]="true" [ngValue]="admin" *ngFor="let admin of admins">{{admin.firstName}} {{admin.lastName}}</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>Members</label>
+              <select
+                name="selectedMembers"
+                [(ngModel)]="selectedUsers"
+                class="selectpicker form-control"
+                multiple
+                data-live-search="true"
+              >
+                <option [disabled]="true">Select Members...</option>
+                <option *ngFor="let user of users" [ngValue]="user">{{user.firstName}} {{user.lastName}}</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <div class="row">
+                <button class="pull-right btn btn-danger" type="submit">
+                  Cancel
+                </button>
+                <button
+                  (click)="addGroup()"
+                  class="pull-right btn btn-primary"
+                  type="submit"
+                >
+                  Submit
+                </button>
+              </div>
+            </div>
+          </form>
+  </div>
+
+</div>
