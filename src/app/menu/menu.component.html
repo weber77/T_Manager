@@ -1,0 +1,14 @@
+<div class="sidebar">
+  <nav>
+    <a [routerLink]="['/']">T.<span>Manager</span></a>
+    <ul>
+      <li [routerLink]="['/dashboard']" [routerLinkActive]="['active']"><a>Dashboard</a></li>
+      <li [routerLink]="['/users']" [routerLinkActive]="['active']" *ngIf="userRole === 'admin'"><a>Users</a></li>
+      <li [routerLink]="['/admins']" [routerLinkActive]="['active']" *ngIf="userRole === 'admin'"><a>Admins</a></li>
+      <li [routerLink]="['/allgroups']" [routerLinkActive]="['active']"><a>Groups</a></li>
+      <li [routerLink]="['/mygroups']" [routerLinkActive]="['active']"><a>My Groups</a></li>
+      <li [routerLink]="['/invitations']" [routerLinkActive]="['active']"><a>Invitations</a></li>
+      <li [routerLink]="['/requests']" [routerLinkActive]="['active']"><a >Requests</a></li>
+    </ul>
+  </nav>
+</div>
