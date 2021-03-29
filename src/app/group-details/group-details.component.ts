@@ -25,6 +25,9 @@ export class GroupDetailsComponent implements OnInit {
     private taskService: TaskService
   ) {
     this.id = parseInt(this.route.snapshot.paramMap.get('id') as string, 10);
+    
+    console.log(this.id);
+    
     this.group = this.getGroup(this.id);
     this.users = this.getUsers(this.id);
     this.tasks = this.getTasks(this.id);
